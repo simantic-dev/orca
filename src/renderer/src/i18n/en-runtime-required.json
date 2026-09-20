@@ -437,14 +437,6 @@
         },
         "RichMarkdownSlashMenu": {
           "e2e12b0e98": "component"
-        },
-        "kicad": {
-          "KicadViewerEmptyState": {
-            "h1": "Install KiCad 8 or newer, or point Orca at kicad-cli in Settings › Hardware.",
-            "h2": "Schematic and board exports need KiCad 8 or newer.",
-            "h3": "Open the project in a local workspace to view it.",
-            "h4": "The schematic is still available; a .kicad_pcb next to the project enables the board views."
-          }
         }
       },
       "emulator": {
@@ -1421,6 +1413,9 @@
           "restartWarning": "Updating restarts these servers. {{value0}} live tabs and {{value1}} terminal panes may briefly disconnect.",
           "updateOne": "Update server",
           "updating": "Updating servers…"
+        },
+        "RepositoryGitHubAccountSection": {
+          "retry": "Retry"
         },
         "RepositoryHooksSection": {
           "0e0dd5b9a5": "loaded",
@@ -2674,7 +2669,8 @@
         "questionCount": "{{value0}} questions"
       },
       "composer": {
-        "effort": "Effort"
+        "effort": "Effort",
+        "imageUnsupported": "Image paste is not supported for this agent."
       },
       "question": {
         "other": "Other…"

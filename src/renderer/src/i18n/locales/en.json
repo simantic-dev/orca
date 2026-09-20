@@ -607,7 +607,8 @@
           "da41abbdd4": "Ante",
           "060d152fb5": "Trae",
           "d443a47995": "Prime Agent",
-          "mimo_code_label": "MiMo Code"
+          "mimo_code_label": "MiMo Code",
+          "opencode2_label": "OpenCode 2"
         },
         "skill": {
           "cli": {
@@ -1703,13 +1704,14 @@
         "326a578923": "orca.yaml + local",
         "2132b670da": "both",
         "0e587e31fb": "yaml",
-        "ac3748dcda": "Name or 'Create From'",
+        "ac3748dcda": "Create From",
         "f660aa1454": "Connecting",
         "7711ad5122": "Local setup command",
         "e5db1b0419": "Combined setup command",
         "runOn": "Run on",
         "addProjectBeforeWorkspace": "Add a project before creating a workspace.",
         "connectProjectFirst": "Connect this project first",
+        "defaultBranchUpdateFailed": "Could not update the project default branch. Try again.",
         "connectSourceLookup": "Connect",
         "reconnectSourceLookup": "Reconnect",
         "setupHostExistingFolderTitle": "Set up {{value0}}",
@@ -3167,6 +3169,7 @@
         },
         "pane": {
           "CloseTerminalDialog": {
+            "automatic_resume_warning": "This terminal will not resume automatically. Cancel and put the workspace to sleep to resume it later.",
             "ebd2fa844d": "Close",
             "1d1a7a9c1f": "Cancel",
             "6b9a6975f8": "The terminal still has a running process. If you close the terminal, the process will be killed.",
@@ -6157,7 +6160,8 @@
           "setParentFor": "Set parent for"
         },
         "WorktreeCardStatusSlot": {
-          "branchIdentity": "Branch"
+          "branchIdentity": "Branch",
+          "sleeping": "Sleeping"
         },
         "NewExternalWorktreesInboxLine": {
           "9f2d4c8b17": "Hide external worktrees permanently for {{value0}}",
@@ -7237,7 +7241,9 @@
           "b82f86d7d2": "Rich Markdown Spellcheck",
           "5195f0b9ef": "Show browser spelling underlines and suggestions while editing rich Markdown.",
           "7ddd66fede": "Editor Word Wrap",
-          "9b18de6eea": "Wrap long lines in file editors instead of requiring horizontal scrolling."
+          "9b18de6eea": "Wrap long lines in file editors instead of requiring horizontal scrolling.",
+          "collapseUnchangedTitle": "Collapse Unchanged Regions",
+          "collapseUnchangedDescription": "Show only changed lines and a little surrounding context in a file diff, hiding the rest behind expandable bands. The View All Changes diff always collapses this way."
         },
         "AdvancedNetworkSettingsSection": {
           "3e431564b5": "localhost, 127.0.0.1, *.internal",
@@ -7254,6 +7260,8 @@
           "configureProxy": "Configure proxy"
         },
         "GeneralPane": {
+          "confirm_running_terminal_close": "Confirm before closing running terminals",
+          "confirm_running_terminal_close_description": "Ask before stopping a running agent or command when closing a terminal.",
           "d58fccfd84": "Navigation",
           "5cb5475664": "Confirm before closing pinned tabs",
           "36b2a5dc6d": "Show a confirmation dialog before a pinned tab is closed.",
@@ -9776,6 +9784,11 @@
             "005be5c699": "Wrap long lines in file editors instead of requiring horizontal scrolling.",
             "editorFontFamily": "Editor Font Family",
             "editorFontFamilyDesc": "Font used by file editors and diff views. Leave empty to follow the terminal font.",
+            "collapseUnchanged": "Collapse Unchanged Regions",
+            "collapseUnchangedDesc": "Show only changed lines and a little surrounding context in a file diff, hiding the rest behind expandable bands. The View All Changes diff always collapses this way.",
+            "collapseUnchangedKw": "collapse",
+            "hideUnchangedKw": "hide unchanged",
+            "foldKw": "fold",
             "externalWorktrees": "External worktrees",
             "externalWorktreesDescription": "Choose whether worktrees created outside Orca appear by default.",
             "editorFontKw": "font",
@@ -9794,7 +9807,14 @@
             "sidebar": "sidebar",
             "867dddea41": "pinned",
             "5250cf0e48": "pin",
-            "afa37a34e1": "close"
+            "afa37a34e1": "close",
+            "running_terminal": "running",
+            "terminal": "terminal",
+            "agent": "agent",
+            "command": "command",
+            "confirm": "confirm",
+            "close": "close",
+            "omp": "OMP"
           }
         },
         "git": {
@@ -10292,6 +10312,12 @@
             "keepForkUpToDateDescription": "Safely fast-forward this fork from upstream.",
             "projectRuntime": "Project Runtime",
             "projectRuntimeDescription": "Choose whether this project runs on Windows or WSL.",
+            "githubAccount": "GitHub Account",
+            "githubAccountDescription": "Bind a keyring gh login for this project’s GitHub API calls.",
+            "githubAccountKeyword": "github account",
+            "ghAccount": "gh account",
+            "login": "login",
+            "token": "token",
             "externalWorktrees": "External worktrees",
             "externalWorktreesDescription": "Override whether worktrees created outside Orca appear for this project.",
             "waitForSetupBeforeAgent": "wait for setup before starting agent",
@@ -11366,8 +11392,18 @@
           "descriptionOrca": "Links open in your system browser. When enabled, {{chord}}+click opens one in Orca's built-in browser instead."
         },
         "BrowserTerminalLinkActionsSetting": {
-          "title": "Show link actions",
-          "description": "Show available actions when you click a link in the terminal or a chat transcript. Turn this off to require {{modifier}}-click in the terminal."
+          "title": "Terminal URL clicks",
+          "description": "Show available actions when you click a link in the terminal or a chat transcript. Turn this off to require {{modifier}}-click in the terminal.",
+          "descriptionV2": "Control clicks on detected URLs printed in terminal panes and chat transcripts.",
+          "plainClickLabel": "Plain click",
+          "plainClickDescription": "Choose whether a left-click shows actions, opens the URL, or leaves it to the terminal. Cmd/Ctrl-click always opens directly.",
+          "plainClickAriaLabel": "Plain click URL behavior",
+          "middleClickLabel": "Middle click",
+          "middleClickDescription": "Choose what a mouse-wheel click does on a detected terminal URL.",
+          "middleClickAriaLabel": "Middle click",
+          "actionsLabel": "Actions",
+          "openUrlLabel": "Open URL",
+          "leaveToTerminalLabel": "Leave to terminal"
         },
         "PluginConsentDialog": {
           "workerTrust": "Background worker — runs its own process",
@@ -11864,6 +11900,25 @@
           "auto": "Agent",
           "off": "Off"
         },
+        "RepositoryGitHubAccountSection": {
+          "unsupported": "This runtime’s GitHub CLI is too old for account binding (needs gh ≥ 2.40).",
+          "capabilityUnknown": "Could not determine whether this runtime’s GitHub CLI supports account binding. Retry.",
+          "envToken": "Environment-token accounts cannot be bound. Use a keyring login.",
+          "invalidBinding": "That GitHub account binding is invalid.",
+          "unavailable": "That GitHub account is unavailable on this runtime.",
+          "saveFailed": "Could not save the GitHub account binding.",
+          "title": "GitHub Account",
+          "description": "Use a specific gh login for this project’s GitHub issue and pull request calls.",
+          "longDescription": "Orca injects a short-lived token from the selected keyring login into each gh call for this project. Project View stays on the ambient login.",
+          "retry": "Retry",
+          "selectLabel": "Account",
+          "ambient": "Default (ambient gh login)",
+          "unavailableOption": "{{user}} @ {{host}} (unavailable)",
+          "capabilityBlocked": "Binding is unavailable until this runtime’s GitHub CLI supports `gh auth token --user` (gh ≥ 2.40).",
+          "capabilityUnknownHint": "Could not determine GitHub CLI account-binding support on this runtime. Clear the binding or retry.",
+          "notEnforced": "Saved, but not enforced by this runtime (mixed-version host).",
+          "refreshAccounts": "Refresh GitHub accounts"
+        },
         "shareSkills": {
           "title": "Share Skills",
           "description": "Share your skills with an unlisted link. Anyone who has it can install them.",
@@ -11990,6 +12045,10 @@
           "targetDescription": "Higher values increase contrast where possible. Background colors stay unchanged.",
           "subtle": "Subtle",
           "strong": "Strong"
+        },
+        "TerminalRenderingSection": {
+          "6d4c55bacc": "Inline Images",
+          "fffab5890b": "Display images directly in the terminal using SIXEL, iTerm2 (IIP), and Kitty graphics protocols."
         },
         "HardwareToolPathRow": {
           "49bbb69ac3": "Checking",
@@ -15518,81 +15577,6 @@
           "c3d9f4a712": "This diff's size isn't known yet, so it loads on request.",
           "f7fa7a40d0": "Load diff"
         },
-        "kicad": {
-          "KicadPcb3dView": {
-            "aea8569131": "Exporting the 3D model — large boards can take a minute.",
-            "305086a576": "Loading {{value0}} model…",
-            "93698b99fd": "The 3D view lost its graphics context.",
-            "a19ed18905": "Building the scene…",
-            "512926c0d4": "Top",
-            "90307d6cb4": "Bottom",
-            "4511a36600": "Reset view",
-            "114ff0dfa0": "Load full model",
-            "947731d830": "Drag to orbit · scroll to zoom · right-drag to pan"
-          },
-          "KicadPcbLayerView": {
-            "8ead480379": "Front",
-            "44944405c3": "Back",
-            "0f8deb3c07": "Layers",
-            "9c434432c0": "Layers to draw",
-            "d46e93b433": "Preset"
-          },
-          "KicadProjectPickerDialog": {
-            "a96e87c025": "View KiCad Project",
-            "dfb7666acb": "This workspace has several KiCad projects. Pick one to open.",
-            "c397b1fe8a": "Filter projects…",
-            "680289ac4f": "No matching project."
-          },
-          "KicadSchematicView": {
-            "17c70bb16e": "Sheet"
-          },
-          "KicadSvgPanSurface": {
-            "852f1cea3e": "Zoom out",
-            "96ff881a05": "Zoom in",
-            "7e512dbb22": "Fit to view"
-          },
-          "KicadViewerEmptyState": {
-            "1ab8e1da62": "Rendering with kicad-cli…",
-            "ba7a3be20c": "kicad-cli was not found",
-            "9ca1077f1f": "kicad-cli is too old",
-            "69a456c03b": "The KiCad viewer is not available on remote workspaces yet",
-            "c9e9ccfb7f": "This project has no board",
-            "a1f6b0fb91": "kicad-cli could not export this view",
-            "8df763bd20": "The export is too large to display",
-            "caa7875712": "This is not a complete KiCad project",
-            "889977382a": "The viewer hit an error",
-            "931b991460": "Install KiCad 8 or newer, or point Orca at kicad-cli in Settings › Hardware.",
-            "f03952ddb3": "Schematic and board exports need KiCad 8 or newer.",
-            "b2c1266f75": "Open the project in a local workspace to view it.",
-            "ce2fd02f38": "The schematic is still available; a .kicad_pcb next to the project enables the board views.",
-            "c85ae12469": "Show kicad-cli output",
-            "13a663122b": "Open Settings",
-            "3ed6629c43": "Load board only",
-            "778cb9120a": "Retry",
-            "h1": "Install KiCad 8 or newer, or point Orca at kicad-cli in Settings › Hardware.",
-            "h2": "Schematic and board exports need KiCad 8 or newer.",
-            "h3": "Open the project in a local workspace to view it.",
-            "h4": "The schematic is still available; a .kicad_pcb next to the project enables the board views."
-          },
-          "KicadViewerToolbar": {
-            "f8710ff64a": "Schematic",
-            "10c18e4640": "PCB",
-            "45a2c886a6": "3D",
-            "c542d4629b": "Re-export from KiCad"
-          },
-          "use": {
-            "kicad": {
-              "project": {
-                "2f7b321787": "The workspace host is not known yet."
-              },
-              "svg": {
-                "artifact": {
-                  "c888d75e09": "kicad-cli produced an SVG the viewer could not read."
-                }
-              }
-            }
-          }
-        },
         "analog": {
           "run": {
             "AnalogRunArtifactsSection": {
@@ -15648,6 +15632,77 @@
                 "open": {
                   "d0109c94c0": "This report cannot be previewed here.",
                   "1f04864008": "Orca is not allowed to open this file."
+                }
+              }
+            }
+          }
+        },
+        "kicad": {
+          "KicadPcb3dView": {
+            "aea8569131": "Exporting the 3D model — large boards can take a minute.",
+            "305086a576": "Loading {{value0}} model…",
+            "93698b99fd": "The 3D view lost its graphics context.",
+            "a19ed18905": "Building the scene…",
+            "512926c0d4": "Top",
+            "90307d6cb4": "Bottom",
+            "4511a36600": "Reset view",
+            "114ff0dfa0": "Load full model",
+            "947731d830": "Drag to orbit · scroll to zoom · right-drag to pan"
+          },
+          "KicadPcbLayerView": {
+            "8ead480379": "Front",
+            "44944405c3": "Back",
+            "0f8deb3c07": "Layers",
+            "9c434432c0": "Layers to draw",
+            "d46e93b433": "Preset"
+          },
+          "KicadProjectPickerDialog": {
+            "a96e87c025": "View KiCad Project",
+            "dfb7666acb": "This workspace has several KiCad projects. Pick one to open.",
+            "c397b1fe8a": "Filter projects…",
+            "680289ac4f": "No matching project."
+          },
+          "KicadSchematicView": {
+            "17c70bb16e": "Sheet"
+          },
+          "KicadSvgPanSurface": {
+            "852f1cea3e": "Zoom out",
+            "96ff881a05": "Zoom in",
+            "7e512dbb22": "Fit to view"
+          },
+          "KicadViewerEmptyState": {
+            "1ab8e1da62": "Rendering with kicad-cli…",
+            "ba7a3be20c": "kicad-cli was not found",
+            "9ca1077f1f": "kicad-cli is too old",
+            "69a456c03b": "The KiCad viewer is not available on remote workspaces yet",
+            "c9e9ccfb7f": "This project has no board",
+            "a1f6b0fb91": "kicad-cli could not export this view",
+            "8df763bd20": "The export is too large to display",
+            "caa7875712": "This is not a complete KiCad project",
+            "889977382a": "The viewer hit an error",
+            "931b991460": "Install KiCad 8 or newer, or point Orca at kicad-cli in Settings › Hardware.",
+            "f03952ddb3": "Schematic and board exports need KiCad 8 or newer.",
+            "b2c1266f75": "Open the project in a local workspace to view it.",
+            "ce2fd02f38": "The schematic is still available; a .kicad_pcb next to the project enables the board views.",
+            "c85ae12469": "Show kicad-cli output",
+            "13a663122b": "Open Settings",
+            "3ed6629c43": "Load board only",
+            "778cb9120a": "Retry"
+          },
+          "KicadViewerToolbar": {
+            "f8710ff64a": "Schematic",
+            "10c18e4640": "PCB",
+            "45a2c886a6": "3D",
+            "c542d4629b": "Re-export from KiCad"
+          },
+          "use": {
+            "kicad": {
+              "project": {
+                "2f7b321787": "The workspace host is not known yet."
+              },
+              "svg": {
+                "artifact": {
+                  "c888d75e09": "kicad-cli produced an SVG the viewer could not read."
                 }
               }
             }
@@ -18267,8 +18322,8 @@
       "truncated": "Some results or matching text were limited. Narrow your search for more precise results.",
       "enableFailed": "Could not enable search. Try again.",
       "enable": "Enable",
-      "notNow": "Not now",
-      "retry": "Try again"
+      "retry": "Try again",
+      "scopeUnknown": "This computer does not have this workspace or project. Switch the scope to All to search everything on it."
     }
   },
   "sessionHistory": {

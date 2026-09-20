@@ -1,6 +1,3 @@
-// Host-side lifecycle manager for the guest-resident WSL agent-hook relay
-// (STA-1515): one relay per distro per instance, ensured from every WSL PTY
-// spawn, forwarding envelopes into ingestRemote and installing guest hooks.
 import type { ChildProcessWithoutNullStreams } from 'node:child_process'
 
 import {
@@ -33,6 +30,8 @@ import {
   recordManagedWslCodexHome,
   wslRuntimeHomePathsEqual
 } from '../codex/managed-wsl-codex-home-registry'
+import { resolveWslHookDefaultDistro } from './wsl-hook-default-distro'
+import { resumeStoppedWslHookRelays } from './wsl-hook-relay-resume'
 
 type DistroState = {
   /** Original casing for wsl.exe argv and breadcrumbs; map keys are lowercased. */
@@ -44,6 +43,7 @@ type DistroState = {
   codexHomePath?: string
   guestEndpointFilePath?: string
   opencodeOverlayDir?: string
+  opencode2OverlayDir?: string
   failures: number
   cooldownUntil: number
   connectedAt?: number
@@ -56,7 +56,6 @@ export class WslHookRelayManager {
   private deps: WslHookRelayManagerDeps
   private recovery: WslRelayRecovery
   private states = new Map<string, DistroState>()
-  /** Distros a hooks-off teardown stopped, so re-enabling can put them back. */
   private stoppedByHooksOff = new Map<string, string | undefined>()
   private defaultDistro: string | null = null
   private disposed = false
@@ -101,17 +100,18 @@ export class WslHookRelayManager {
     return this.states.get(wslHookRelayStateKey(distro ?? this.defaultDistro ?? ''))
   }
 
-  /** Guest endpoint file path once known; null before first connect
-   *  (callers keep the /p-translated Windows endpoint path until then). */
   getGuestEndpointFilePath(distro: string | null): string | null {
     return this.stateFor(distro)?.guestEndpointFilePath ?? null
   }
 
-  /** Guest OpenCode config-overlay dir once the guest relay materializes it;
-   *  null before then (older bundle / relay not yet connected). Callers drop
-   *  OPENCODE_CONFIG_DIR while null so no Windows overlay path crosses into WSL. */
-  getOpenCodeOverlayDir(distro: string | null): string | null {
-    return this.stateFor(distro)?.opencodeOverlayDir ?? null
+  getOpenCodeOverlayDir(
+    distro: string | null,
+    agent: 'opencode' | 'opencode2' = 'opencode'
+  ): string | null {
+    const state = this.stateFor(distro)
+    return agent === 'opencode2'
+      ? (state?.opencode2OverlayDir ?? null)
+      : (state?.opencodeOverlayDir ?? null)
   }
 
   /** Kills every live relay. Non-permanent (hooks switched off mid-session) leaves the
@@ -132,18 +132,11 @@ export class WslHookRelayManager {
   /** Restarts what a hooks-off teardown stopped. Skips distros the user has since shut
    *  down: `wsl -d` BOOTS a stopped distro, and nothing in it is waiting on status. */
   resumeStoppedRelays(): void {
-    const distros = [...this.stoppedByHooksOff]
-    this.stoppedByHooksOff.clear()
-    for (const [distro, codexHomePath] of distros) {
-      void this.deps
-        .isDistroRunning(distro)
-        .then((running) => {
-          if (running) {
-            this.ensureForDistro(distro, codexHomePath)
-          }
-        })
-        .catch(() => undefined)
-    }
+    resumeStoppedWslHookRelays(
+      this.stoppedByHooksOff,
+      this.deps.isDistroRunning,
+      (distro, codexHomePath) => this.ensureForDistro(distro, codexHomePath)
+    )
   }
 
   private async ensureInternal(
@@ -202,6 +195,7 @@ export class WslHookRelayManager {
       // Why: instance-keyed and on the distro's persistent fs, so it outlives a relay
       // crash — dropping it would blank status on panes spawned mid-relaunch.
       opencodeOverlayDir: existing?.opencodeOverlayDir,
+      opencode2OverlayDir: existing?.opencode2OverlayDir,
       codexHomePath: requestedCodexHomePath ?? existing?.codexHomePath,
       cooldownUntil: 0
     }
@@ -339,15 +333,10 @@ export class WslHookRelayManager {
   }
 
   private async resolveDefaultDistro(): Promise<string | null> {
-    if (this.defaultDistro) {
-      return this.defaultDistro
-    }
-    try {
-      const distros = await this.deps.listDistros()
-      this.defaultDistro = distros[0] ?? null
-    } catch {
-      this.defaultDistro = null
-    }
+    this.defaultDistro = await resolveWslHookDefaultDistro(
+      this.defaultDistro,
+      this.deps.listDistros
+    )
     return this.defaultDistro
   }
 }
