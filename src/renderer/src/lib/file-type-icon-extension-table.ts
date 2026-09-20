@@ -1,4 +1,5 @@
 import {
+  CircuitBoard,
   Database,
   FileArchive,
   FileAxis3D,
@@ -94,6 +95,9 @@ export const FILE_ICON_BY_EXTENSION: Record<string, LucideIcon> = {
   jpg: FileImage,
   js: FileCode,
   json: FileJson,
+  kicad_pcb: CircuitBoard,
+  kicad_pro: CircuitBoard,
+  kicad_sch: CircuitBoard,
   json5: FileJson,
   jsonc: FileJson,
   jsx: FileCode,

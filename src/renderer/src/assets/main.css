@@ -102,6 +102,7 @@
   --color-terminal-pane-title-on-light-separator: var(--terminal-pane-title-on-light-separator);
   --color-ai-action-accent: var(--ai-action-accent);
   --color-status-success: var(--status-success);
+  --color-kicad-paper: var(--kicad-paper);
   --color-status-success-background: var(--status-success-background);
   --color-status-success-border: var(--status-success-border);
   --color-workspace-status-done: var(--workspace-status-done);
@@ -183,6 +184,8 @@
   /* Legible weight for text/glyphs on a tinted --agent-question surface. */
   --agent-question-text: var(--color-orange-700);
   --status-success: #15803d;
+  /* Paper behind KiCad exports, which draw dark strokes on no background. */
+  --kicad-paper: #ffffff;
   --status-success-background: color-mix(in srgb, var(--status-success) 10%, transparent);
   --status-success-border: color-mix(in srgb, var(--status-success) 25%, transparent);
   /* Workspace PR-state tones: same hue in both themes so a status keeps its
@@ -297,6 +300,7 @@
   --agent-question: var(--color-orange-500);
   --agent-question-text: var(--color-orange-300);
   --status-success: #86efac;
+  --kicad-paper: #e5e7eb;
   --status-success-background: color-mix(in srgb, var(--status-success) 10%, transparent);
   --status-success-border: color-mix(in srgb, var(--status-success) 25%, transparent);
   --workspace-status-done: #c7a594;
@@ -3051,4 +3055,23 @@ html.native-shell .app-layout {
   box-shadow:
     inset 0 1px 0 0 color-mix(in srgb, var(--foreground) 5%, transparent),
     0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* uPlot lanes for analog-cli datasets: legend and cursor take design tokens instead of uPlot's defaults. */
+.analog-uplot .u-legend {
+  color: var(--muted-foreground);
+  font-size: 11px;
+  text-align: left;
+  padding: 2px 0 0 60px;
+}
+.analog-uplot .u-legend .u-value {
+  color: var(--foreground);
+  font-variant-numeric: tabular-nums;
+}
+.analog-uplot .u-select {
+  background: color-mix(in srgb, var(--primary) 15%, transparent);
+}
+.analog-uplot .u-cursor-x,
+.analog-uplot .u-cursor-y {
+  border-color: var(--muted-foreground);
 }

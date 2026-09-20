@@ -1,6 +1,8 @@
 import type { BrowserScreencastResult } from '../../shared/runtime-types'
 import type { RuntimeBrowserCommands, RuntimeBrowserCommandHost } from './orca-runtime-browser'
 import { RuntimeEmulatorCommands } from './orca-runtime-emulator'
+import { RuntimeKicadCommands } from './runtime-kicad-commands'
+import { RuntimeAnalogCommands } from './runtime-analog-commands'
 import { RuntimeBrowserScreencastController } from './runtime-browser-screencast-controller'
 import { createRuntimeBrowserCommands } from './runtime-browser-commands-factory'
 import { RuntimeJiraCommands } from './runtime-jira-commands'
@@ -22,10 +24,14 @@ type BrowserSurface = Omit<PublicMethods<RuntimeBrowserCommands>, 'browserScreen
 
 export type RuntimeEdgeCommandSurface = BrowserSurface &
   PublicMethods<RuntimeJiraCommands> &
-  PublicMethods<RuntimeEmulatorCommands>
+  PublicMethods<RuntimeEmulatorCommands> &
+  PublicMethods<RuntimeKicadCommands> &
+  PublicMethods<RuntimeAnalogCommands>
 
 type ScreencastDependencies = ConstructorParameters<typeof RuntimeBrowserScreencastController>[0]
 type EmulatorHost = ConstructorParameters<typeof RuntimeEmulatorCommands>[0]
+type KicadHost = ConstructorParameters<typeof RuntimeKicadCommands>[0]
+type AnalogHost = ConstructorParameters<typeof RuntimeAnalogCommands>[0]
 
 const BROWSER_COMMAND_NAMES = [
   'browserSnapshot',
@@ -139,12 +145,16 @@ export class RuntimeEdgeCommandController {
   private readonly browser: RuntimeBrowserCommands
   private readonly screencasts: RuntimeBrowserScreencastController
   private readonly emulator: RuntimeEmulatorCommands
+  private readonly kicad: RuntimeKicadCommands
+  private readonly analog: RuntimeAnalogCommands
   readonly surface: RuntimeEdgeCommandSurface
 
   constructor(args: {
     browserHost: RuntimeBrowserCommandHost
     screencast: Omit<ScreencastDependencies, 'getCommands'>
     emulatorHost: EmulatorHost
+    kicadHost: KicadHost
+    analogHost: AnalogHost
     getBrowserCommands?: () => RuntimeBrowserCommands
   }) {
     this.browser = createRuntimeBrowserCommands(args.browserHost)
@@ -153,10 +163,15 @@ export class RuntimeEdgeCommandController {
       getCommands: () => args.getBrowserCommands?.() ?? this.browser
     })
     this.emulator = new RuntimeEmulatorCommands(args.emulatorHost)
+    this.kicad = new RuntimeKicadCommands(args.kicadHost)
+    this.analog = new RuntimeAnalogCommands(args.analogHost)
+    // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: every surface method is bound above by name or prefix; the spread cannot be typed narrower than the union it assembles.
     this.surface = {
       ...bindPrefixedMethods(this.jira, 'jira'),
       ...bindNamedMethods(this.browser, BROWSER_COMMAND_NAMES),
       ...bindPrefixedMethods(this.emulator, 'emulator'),
+      ...bindPrefixedMethods(this.kicad, 'kicad'),
+      ...bindPrefixedMethods(this.analog, 'analog'),
       browserScreencast: (params, options) => this.screencasts.start(params, options)
     } as RuntimeEdgeCommandSurface
   }

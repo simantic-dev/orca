@@ -1,9 +1,9 @@
+import { AnalogRunView, CombinedDiffViewer, MarkdownPreview } from './editor-lazy-views'
 import { useAppStore } from '@/store'
 import type { MarkdownViewMode, OpenFile, PendingEditorReveal } from '@/store/slices/editor'
 import type { GitDiffResult } from '../../../../shared/git-diff-compare-types'
 import type { GitStatusEntry } from '../../../../shared/git-status-types'
 import { CheckRunDetailsPanel } from './CheckRunDetailsPanel'
-import { CombinedDiffViewer, MarkdownPreview } from './editor-lazy-views'
 import { EditorConflictReviewSurface } from './EditorConflictReviewSurface'
 import { EditorDiffFileSurface } from './EditorDiffFileSurface'
 import { EditorEditFileSurface } from './EditorEditFileSurface'
@@ -47,6 +47,7 @@ export function EditorContent({
   isMermaid,
   isCsv,
   isNotebook,
+  isKicadProject = false,
   mdViewMode,
   inlineMarkdownRenderState,
   isChangesMode,
@@ -75,6 +76,7 @@ export function EditorContent({
   isMermaid: boolean
   isCsv: boolean
   isNotebook: boolean
+  isKicadProject?: boolean
   mdViewMode: MarkdownViewMode
   inlineMarkdownRenderState: MarkdownRenderState | null
   isChangesMode: boolean
@@ -106,8 +108,12 @@ export function EditorContent({
     viewStateScopeId === activeFile.id
       ? `${activeFile.filePath}:pdf`
       : `${activeFile.filePath}::${viewStateScopeId}:pdf`
-  const monacoLanguage = resolvedLanguage === 'notebook' ? 'json' : resolvedLanguage
+  const monacoLanguage =
+    resolvedLanguage === 'notebook' || resolvedLanguage === 'kicad-project'
+      ? 'json'
+      : resolvedLanguage
   const reloadOpenCheckRunDetailsTab = useAppStore((state) => state.reloadOpenCheckRunDetailsTab)
+  const reloadOpenAnalogRunTab = useAppStore((state) => state.reloadOpenAnalogRunTab)
   const markdownDocuments = useMarkdownDocuments(activeFile, isMarkdown, mdViewMode, handleSave)
   const getConflictNavigation = useEditorConflictNavigation()
   const activeConflictEntry =
@@ -118,6 +124,26 @@ export function EditorContent({
       activeFile.diffSource === 'combined-uncommitted' ||
       activeFile.diffSource === 'combined-branch' ||
       activeFile.diffSource === 'combined-commit')
+
+  if (activeFile.mode === 'analog-run') {
+    return activeFile.analogRun ? (
+      <AnalogRunView
+        key={activeFile.id}
+        fileId={activeFile.id}
+        run={activeFile.analogRun}
+        onReload={() => {
+          void reloadOpenAnalogRunTab(activeFile.id)
+        }}
+      />
+    ) : (
+      <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+        {translate(
+          'auto.components.editor.EditorContent.9738dc495f',
+          'Run details are unavailable.'
+        )}
+      </div>
+    )
+  }
 
   if (activeFile.mode === 'check-details') {
     const checkRunDetails = activeFile.checkRunDetails
@@ -241,6 +267,7 @@ export function EditorContent({
         isMermaid={isMermaid}
         isCsv={isCsv}
         isNotebook={isNotebook}
+        isKicadProject={isKicadProject}
         mdViewMode={mdViewMode}
         inlineMarkdownRenderState={inlineMarkdownRenderState}
         isChangesMode={isChangesMode}

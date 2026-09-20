@@ -16,7 +16,7 @@ export type EditorHeaderOpenFileState = {
 
 /** Whether the panel shows its own path header; check-details names the document itself. */
 export function shouldShowEditorPanelHeader(file: OpenFile, isCombinedDiff: boolean): boolean {
-  return !isCombinedDiff && file.mode !== 'check-details'
+  return !isCombinedDiff && file.mode !== 'check-details' && file.mode !== 'analog-run'
 }
 
 export function getEditorHeaderCopyState(file: OpenFile): EditorHeaderCopyState {
@@ -26,6 +26,15 @@ export function getEditorHeaderCopyState(file: OpenFile): EditorHeaderCopyState 
       copyToastLabel: 'Worktree path copied',
       pathLabel: 'Conflict Review',
       pathTitle: file.filePath
+    }
+  }
+
+  if (file.mode === 'analog-run') {
+    return {
+      copyText: file.analogRun?.summary.dir ?? null,
+      copyToastLabel: 'Run folder copied',
+      pathLabel: file.relativePath,
+      pathTitle: file.analogRun?.summary.dir ?? file.relativePath
     }
   }
 

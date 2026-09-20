@@ -20,6 +20,7 @@ function TabBarInner(props: TabBarProps): React.JSX.Element {
     onNewSimulatorTab,
     onNewFileTab,
     onOpenFileTab,
+    onOpenKicadProjectTab,
     onPinFile
   } = props
   const runtime = useTabBarRuntimeModel({ worktreeId, groupId })
@@ -42,7 +43,8 @@ function TabBarInner(props: TabBarProps): React.JSX.Element {
     onNewBrowserTab,
     onNewSimulatorTab,
     onNewFileTab,
-    onOpenFileTab
+    onOpenFileTab,
+    onOpenKicadProjectTab
   })
   const itemProjection = useTabBarItemProjection({
     props,

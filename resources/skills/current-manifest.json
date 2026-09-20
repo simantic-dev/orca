@@ -2,6 +2,24 @@
   "schemaVersion": 2,
   "skills": [
     {
+      "name": "analog-cli",
+      "sourcePath": "skills/analog-cli",
+      "releaseRevision": 1,
+      "packageDigest": "8d9dfabecaaab88aa8007bd062547dbe39a70ff0fee2b22dd31c569ca3a4a4d9",
+      "gitTreeSha": "4dd5b8702539b35f51498ce3fefad81a2e7588ee",
+      "files": [
+        {
+          "path": "SKILL.md",
+          "size": 2096,
+          "executable": false,
+          "classification": "text",
+          "exactSha256": "79966647c3e6128ff9303a8802174683d8fdb7078dc1d7c0218fd52981049a70",
+          "textNormalizedSha256": "79966647c3e6128ff9303a8802174683d8fdb7078dc1d7c0218fd52981049a70",
+          "identitySha256": "79966647c3e6128ff9303a8802174683d8fdb7078dc1d7c0218fd52981049a70"
+        }
+      ]
+    },
+    {
       "name": "computer-use",
       "sourcePath": "skills/computer-use",
       "releaseRevision": 9,

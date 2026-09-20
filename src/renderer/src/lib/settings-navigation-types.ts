@@ -48,6 +48,7 @@ const SETTINGS_NAV_TARGETS = [
   'servers',
   'mobile',
   'mobile-emulator',
+  'hardware',
   'repo'
 ] as const
 

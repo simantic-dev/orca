@@ -10,6 +10,7 @@ import {
 } from '../../runtime/web-runtime-session'
 import { openTabBarEntry, type TabCreateEntryArgs } from '../tab-bar/tab-create-entry-action'
 import { openMobileEmulatorTab } from '@/lib/open-mobile-emulator-tab'
+import { openKicadProjectInWorkspace } from '@/lib/open-kicad-project-tab'
 import { ensureSimulatorTab, getSimulatorTabForWorktree } from '@/lib/ensure-simulator-tab'
 import { buildDuplicatedBrowserTabOptions } from '@/lib/duplicate-browser-tab-options'
 import { getRuntimeEnvironmentIdForWorktree } from '@/lib/worktree-runtime-owner'
@@ -142,6 +143,9 @@ export function useTabGroupCreationCommands({
     // Why: target the owning group explicitly; the "+" menu can fire from an unfocused panel without updating global group focus.
     newFileTab: async () => {
       await openNewMarkdownInActiveWorkspace(groupId)
+    },
+    openKicadProjectTab: () => {
+      void openKicadProjectInWorkspace(worktreeId, groupId)
     },
     newTerminalTab: () => {
       void openNewTerminalTabInActiveWorkspace(groupId)

@@ -222,6 +222,8 @@ export function buildDefaultSettings(args: {
     mobileEmulatorEnabled: true,
     mobileEmulatorDefaultDeviceUdid: null,
     androidSdkPath: null,
+    analogCliPath: null,
+    kicadCliPath: null,
     // Why: indefinite hold — the "Restore" banner is the explicit return action, no wall-clock guess. See docs/mobile-fit-hold.md.
     mobileAutoRestoreFitMs: null,
     // Why: Anywhere (Relay + local) is the default; local-only is written only on explicit same-network choice.

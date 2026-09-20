@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  CircuitBoard,
   FilePlus,
   FileText,
   GitCompare,
@@ -170,6 +171,8 @@ function getActionPresentation(
         <FilePlus className="size-3.5 shrink-0" aria-hidden="true" />
       ) : option.option.kind === 'open-markdown' ? (
         <FileText className="size-3.5 shrink-0" aria-hidden="true" />
+      ) : option.option.kind === 'open-kicad-project' ? (
+        <CircuitBoard className="size-3.5 shrink-0" aria-hidden="true" />
       ) : option.option.kind === 'new-simulator' || option.option.kind === 'go-to-simulator' ? (
         <Smartphone className="size-3.5 shrink-0" aria-hidden="true" />
       ) : (

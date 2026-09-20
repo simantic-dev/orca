@@ -17,6 +17,7 @@
       "332dbfa497": "Workspace uploaded",
       "3443924e91": "automations",
       "4f08ae8311": "tasks",
+      "5096cbbc86": "Orca",
       "62ca9895a7": "space",
       "844eb0f4f4": "activity",
       "9f0152563e": "mobile",
@@ -60,6 +61,8 @@
       },
       "Landing": {
         "16e9e3df89": "starred",
+        "520304a067": "Orca logo",
+        "6ca6ff404e": "ORCA",
         "ce44fad849": "Missing dependencies",
         "f05d237049": "Add a project first"
       },
@@ -434,6 +437,14 @@
         },
         "RichMarkdownSlashMenu": {
           "e2e12b0e98": "component"
+        },
+        "kicad": {
+          "KicadViewerEmptyState": {
+            "h1": "Install KiCad 8 or newer, or point Orca at kicad-cli in Settings › Hardware.",
+            "h2": "Schematic and board exports need KiCad 8 or newer.",
+            "h3": "Open the project in a local workspace to view it.",
+            "h4": "The schematic is still available; a .kicad_pcb next to the project enables the board views."
+          }
         }
       },
       "emulator": {
@@ -656,6 +667,9 @@
           }
         },
         "slides": {
+          "HomeSlide": {
+            "5d94e8ddcc": "Orca"
+          },
           "WorktreeListSlide": {
             "c5ad56786d": "spinner"
           }
@@ -685,6 +699,7 @@
         "OnboardingFlow": {
           "35bbaf5ae0": "notifications",
           "984338477a": "theme",
+          "a249f81538": "Orca",
           "a5e5da02f7": "integrations",
           "c47e1bd149": "agent",
           "ff92d15436": "Orca will notify you know when agents are done or need help."

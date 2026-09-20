@@ -1,4 +1,6 @@
 // @ts-nocheck -- mechanically split from OrcaRuntimeService; behavior is covered by AST equivalence and characterization tests.
+import { getAppEnvironment } from '../../shared/app-environment'
+import { buildAnalogCliSessionEnv } from '../analog-cli/analog-cli-session-env'
 import { OrcaRuntimeWithTransitionGraphReloadToTerminalState } from './orca-runtime-transition-graph-reload-to-terminal-state'
 import type { ExecutionHostId } from '../../shared/execution-host'
 import type { BrowserNetworkExecutionHost } from '../../shared/browser-client-host-protocol'
@@ -172,7 +174,15 @@ export class OrcaRuntimeWithResolveBrowserNetworkExecutionHostForWorktree extend
       ...this.buildAgentHookPtyEnv?.(),
       ORCA_PANE_KEY: paneKey,
       ORCA_TAB_ID: tabId,
-      ORCA_WORKTREE_ID: scope.id
+      ORCA_WORKTREE_ID: scope.id,
+      // Why: analog-cli stamps these on every run it records, which is how the Analog sidebar
+      // attributes a simulation to the pane (and agent) that ran it.
+      ...buildAnalogCliSessionEnv({
+        paneKey,
+        worktreeId: scope.id,
+        isLocalHost: scope.connectionId === null,
+        userDataPath: getAppEnvironment().getPath('userData')
+      })
     }
     if (!scope.folderWorkspace) {
       return env

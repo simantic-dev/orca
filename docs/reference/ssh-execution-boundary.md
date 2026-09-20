@@ -28,6 +28,7 @@ Rule 1 is stated at `src/main/source-control/repo-default-branch.ts:76-78`, `src
 | commit-message / PR-field AI generation                        | **remote**         | uses the remote agent CLI and its auth                               |
 | `gh` / GitHub API, `glab` / GitLab                             | **client**         | inconsistent with the rule; PRs carry the client's identity          |
 | the `orca` CLI inside a remote terminal                        | **client runtime** | control plane only — your files and processes stay remote; see below |
+| `kicad-cli` exports, analog-cli run history and datasets       | **local only (v1)** | a remote workspace is refused by code (`kicad_remote_host_unsupported`, `analog_remote_unsupported`), never answered from the client; see `kicad-project-viewer.md`, `analog-cli-integration.md` |
 
 ## Survival: what a disconnect does _not_ do
 

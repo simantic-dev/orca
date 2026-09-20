@@ -27,6 +27,8 @@ const EXT_TO_LANGUAGE: Record<string, string> = {
   // would flag every record after line one as trailing content.
   '.jsonl': 'jsonl',
   '.ipynb': 'notebook',
+  // Why: the KiCad project viewer keys off this id; the file itself is JSON and edits as JSON in source mode.
+  '.kicad_pro': 'kicad-project',
   '.md': 'markdown',
   '.mdx': 'markdown',
   '.mmd': 'mermaid',

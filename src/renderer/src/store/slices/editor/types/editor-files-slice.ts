@@ -1,3 +1,5 @@
+import type { AnalogRunSummary } from '../../../../../../shared/analog-cli-types'
+import type { OpenAnalogRunState } from './analog-run-tab-state'
 import type { HttpLinkSourceOwner } from '@/lib/http-link-routing'
 import type {
   CheckRunDetailsTabPatch,
@@ -159,6 +161,13 @@ export type EditorFilesSlice = {
     state: CheckRunDetailsTabPatch
   ) => void
   reloadOpenCheckRunDetailsTab: (fileId: string) => Promise<void>
+  openAnalogRun: (
+    worktreeId: string,
+    summary: AnalogRunSummary,
+    options?: { targetGroupId?: string }
+  ) => void
+  patchOpenAnalogRun: (fileId: string, patch: Partial<OpenAnalogRunState>) => void
+  reloadOpenAnalogRunTab: (fileId: string) => Promise<void>
   openBranchAllDiffs: (
     worktreeId: string,
     worktreePath: string,

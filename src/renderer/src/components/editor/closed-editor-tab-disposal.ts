@@ -75,6 +75,8 @@ export function disposeClosedEditorTabs(
         break
       case 'check-details':
         break
+      case 'analog-run':
+        break
     }
   }
 
