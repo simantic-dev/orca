@@ -18,6 +18,8 @@ a run opens its results (verdict, measurements, findings, waveforms).
 
 ## Start here
 
+`analog-cli` below is a placeholder for the executable you resolved in the stub; substitute it before running.
+
 1. Find the binary: `analog-cli --version`. If that fails, try `$ANALOG_CLI`, then
    `~/.simantic/cli/releases/*/analog-cli`. Orca's Settings › Hardware pane names the binary it
    resolved; say so explicitly if none is installed instead of guessing.
