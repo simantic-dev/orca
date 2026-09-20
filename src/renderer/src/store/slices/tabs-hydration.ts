@@ -133,6 +133,10 @@ function hydrateUnifiedFormat(
         if (tab.contentType === 'editor' && tab.entityId.startsWith('html-preview::')) {
           return false
         }
+        // Why: analog-run tabs are not persisted (only edit-mode files are), so their chrome must go too.
+        if (tab.contentType === 'editor' && tab.entityId.startsWith('analog-run::')) {
+          return false
+        }
         if (!isTransientEditorContentType(tab.contentType)) {
           return true
         }

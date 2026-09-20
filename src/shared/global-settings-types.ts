@@ -435,6 +435,10 @@ export type GlobalSettings = {
   mobileEmulatorDefaultDeviceUdid?: string | null
   /** Explicit Android SDK root for when auto-discovery (ANDROID_HOME / default path) fails; null (default) auto-discovers. */
   androidSdkPath?: string | null
+  /** Explicit analog-cli binary; null (default) walks the discovery ladder (env, PATH, installed releases). */
+  analogCliPath?: string | null
+  /** Explicit kicad-cli binary; null (default) walks the discovery ladder (env, PATH, app bundle). */
+  kicadCliPath?: string | null
   /** Auto-restore window (ms) for a phone-fit PTY after the last mobile subscriber leaves.
    *  `null` (default) holds phone size indefinitely; a finite value schedules restore.
    *  Clamped on read to [5_000ms, 60min]. See docs/mobile-fit-hold.md. */

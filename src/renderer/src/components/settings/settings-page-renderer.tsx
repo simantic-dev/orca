@@ -53,6 +53,7 @@ import {
   renderPluginsSettingsSection
 } from './settings-advanced-section-renderers'
 import { renderProjectSettingsSections } from './settings-project-section-renderer'
+import { renderHardwareSettingsSection } from './settings-hardware-section-renderer'
 
 export function renderSettingsLoading(
   interactions: SettingsInteractionController
@@ -135,6 +136,7 @@ export function renderSettingsPage(context: SettingsRenderContext): React.JSX.El
                 {renderQuickCommandsSettingsSection(context)}
                 {renderBrowserSettingsSection(context)}
                 {renderMobileEmulatorSettingsSection(context)}
+                {renderHardwareSettingsSection(context)}
                 {renderFloatingWorkspaceSettingsSection(context)}
                 {renderAppearanceSettingsSection(context)}
                 {renderInputSettingsSection(context)}

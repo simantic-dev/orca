@@ -29,6 +29,7 @@ import {
   restoreOrStripOverlayEnv
 } from './pi-agent'
 import { AGENT_HOOK_RUNTIME_ENV_KEYS } from './spawn-env-keys'
+import { applyAnalogCliSessionEnv } from '../../../analog-cli/analog-cli-session-env'
 
 /**
  * Mutates `baseEnv` in place with all host-local PTY env vars and returns it.
@@ -280,6 +281,9 @@ export function buildPtyHostEnv(
   // Why: must run after the prepends above — they re-read PATH from the unscrubbed
   // process.env when baseEnv carries none, which is the daemon path's normal shape.
   stripLegacyTerminalShimEnv(baseEnv, process.platform)
+
+  // Why: analog-cli stamps these on every run it records; the Analog sidebar joins runs to panes by them.
+  applyAnalogCliSessionEnv(baseEnv, opts.userDataPath)
 
   return baseEnv
 }

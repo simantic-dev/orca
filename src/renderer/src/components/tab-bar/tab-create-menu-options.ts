@@ -11,6 +11,7 @@ export type TabCreateMenuOptionKind =
   | 'new-terminal'
   | 'new-terminal-shell'
   | 'open-markdown'
+  | 'open-kicad-project'
 
 export type TabCreateMenuOption = {
   id: string
@@ -24,6 +25,7 @@ export type TabCreateMenuOptionsContext = {
   hasNewBrowser: boolean
   hasNewMarkdown: boolean
   hasOpenMarkdown: boolean
+  hasKicadProject?: boolean
   hasSimulator: boolean
   simulatorIsGoTo: boolean
   terminalOnly: boolean
@@ -141,6 +143,25 @@ export function buildTabCreateMenuOptions(
         translate('auto.components.tab.bar.tab.create.menu.options.5f17fb9d0c', 'markdown'),
         translate('auto.components.tab.bar.tab.create.menu.options.44caaf7b36', 'md'),
         translate('auto.components.tab.bar.tab.create.menu.options.164c394bab', 'open file')
+      ]
+    })
+  }
+
+  if (context.hasKicadProject) {
+    const label = translate(
+      'auto.components.tab.bar.tab.create.menu.options.3d888e2645',
+      'View KiCad Project...'
+    )
+    options.push({
+      id: 'open-kicad-project',
+      kind: 'open-kicad-project',
+      label,
+      keywords: [
+        translate('auto.components.tab.bar.tab.create.menu.options.8c468ecbde', 'kicad'),
+        translate('auto.components.tab.bar.tab.create.menu.options.8a3c68c2b9', 'pcb'),
+        translate('auto.components.tab.bar.tab.create.menu.options.039f29bd37', 'schematic'),
+        translate('auto.components.tab.bar.tab.create.menu.options.1f03984d05', 'board'),
+        translate('auto.components.tab.bar.tab.create.menu.options.e56cd110ec', 'kicad project')
       ]
     })
   }

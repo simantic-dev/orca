@@ -6,6 +6,7 @@ import { getFloatingWorkspaceSearchEntries } from '@/components/settings/floatin
 import { getGitProviderApiBudgetSearchEntries } from '@/components/settings/git-provider-api-budget-search'
 import { getGitPaneSearchEntries } from '@/components/settings/git-search'
 import { getMobileEmulatorSearchEntries } from '@/components/settings/mobile-emulator-search'
+import { getHardwareToolsSearchEntries } from '@/components/settings/hardware-tools-search'
 import { getQuickCommandsPaneSearchEntries } from '@/components/settings/quick-commands-search'
 import { getShareSkillsSettingsSearchEntries } from '@/components/settings/share-skills-settings-search'
 import { getTasksPaneSearchEntries } from '@/components/settings/tasks-search'
@@ -14,6 +15,7 @@ import type { SettingsNavSection } from '@/lib/settings-navigation-types'
 import {
   BookOpen,
   CalendarClock,
+  CircuitBoard,
   Files,
   History,
   GitBranch,
@@ -170,6 +172,24 @@ export function buildWorkflowSettingsSections(
             ),
             icon: TabletSmartphone,
             searchEntries: getMobileEmulatorSearchEntries(),
+            group: 'workflows'
+          }
+        ]
+      : []),
+    ...(showDesktopOnlySettings
+      ? [
+          {
+            id: 'hardware',
+            title: translate(
+              'auto.hooks.settings.navigation.workflow.sections.d8703d1409',
+              'Hardware'
+            ),
+            description: translate(
+              'auto.hooks.settings.navigation.workflow.sections.df745d405c',
+              'KiCad project viewer and analog-cli simulation tooling.'
+            ),
+            icon: CircuitBoard,
+            searchEntries: getHardwareToolsSearchEntries(),
             group: 'workflows'
           }
         ]

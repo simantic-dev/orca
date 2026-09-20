@@ -25,8 +25,12 @@ import {
 } from './app-root-surface-settings'
 import type { FloatingWorkspacePanelState } from './use-floating-workspace-panel'
 import type { OnboardingGate } from './use-onboarding-and-feature-tips'
+import { useKicadProjectPickerStore } from '@/lib/kicad-project-picker-store'
 
 const QuickOpen = lazy(() => import('../components/QuickOpen'))
+const KicadProjectPickerDialog = lazy(
+  () => import('../components/editor/kicad/KicadProjectPickerDialog')
+)
 const WorktreeJumpPalette = lazy(() => import('../components/WorktreeJumpPalette'))
 const WorkspaceCleanupDialog = lazy(
   () => import('../components/workspace-cleanup/WorkspaceCleanupDialog')
@@ -130,6 +134,7 @@ export function AppRootSurfaces(props: {
   floatingWorkspace: FloatingWorkspacePanelState
   onboardingGate: OnboardingGate
 }): React.JSX.Element {
+  const kicadPickerOpen = useKicadProjectPickerStore((state) => state.request !== null)
   const { floatingWorkspace, onboardingGate } = props
   const { mountedLazyModalIds, shouldMountAddRepoDialog } = useLazyModalMounts()
   const activeView = useAppStore((s) => s.activeView)
@@ -232,6 +237,11 @@ export function AppRootSurfaces(props: {
           </ModalBoundary>
         ) : null}
       </Suspense>
+      {kicadPickerOpen ? (
+        <Suspense fallback={null}>
+          <KicadProjectPickerDialog />
+        </Suspense>
+      ) : null}
       <Suspense fallback={null}>
         {mountedLazyModalIds.has('quick-open') ? (
           <ModalBoundary boundaryId="modal.quick-open" resetKey={activeModal === 'quick-open'}>

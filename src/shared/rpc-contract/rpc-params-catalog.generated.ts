@@ -42,6 +42,14 @@ import {
   AiVaultPrepareSessionResumeParams,
   AiVaultSessionTitlesParams
 } from './ai-vault-params'
+import {
+  AnalogListRunsParams,
+  AnalogReadDatasetParams,
+  AnalogRunParams,
+  AnalogToolchainParams,
+  AnalogUnwatchParams,
+  AnalogWatchParams
+} from './analog-params'
 import { ArtifactsDeleteParams, ListOptions, SourceRequest, WriteRequest } from './artifacts-params'
 import {
   AutomationCreate,
@@ -305,6 +313,15 @@ import {
   SiteSelection,
   UserSearch
 } from './jira-params'
+import {
+  KicadArtifactReadParams,
+  KicadAvailabilityParams,
+  KicadPcbLayersRenderParams,
+  KicadPcbModelExportParams,
+  KicadProjectParams,
+  KicadSchematicRenderParams,
+  KicadWorktreeParams
+} from './kicad-params'
 import {
   AgentIssueContext,
   AgentSearchIssues,
@@ -597,6 +614,14 @@ export const RPC_PARAMS_BY_METHOD = {
   'aiVault.searchSessions': AiVaultSearchRequestSchema,
   'aiVault.searchStatus': AiVaultSearchStatusRequestSchema,
   'aiVault.setSearchEnabled': AiVaultSetSearchEnabledParamsSchema,
+  'analog.forgetRun': AnalogRunParams,
+  'analog.getRun': AnalogRunParams,
+  'analog.listRuns': AnalogListRunsParams,
+  'analog.listSessionCalls': AnalogWatchParams,
+  'analog.readDataset': AnalogReadDatasetParams,
+  'analog.toolchain': AnalogToolchainParams,
+  'analog.unwatch': AnalogUnwatchParams,
+  'analog.watch': AnalogWatchParams,
   'artifacts.delete': ArtifactsDeleteParams,
   'artifacts.getPublishedLink': SourceRequest,
   'artifacts.list': ListOptions,
@@ -918,6 +943,13 @@ export const RPC_PARAMS_BY_METHOD = {
   'jira.status': null,
   'jira.testConnection': SiteSelection,
   'jira.updateIssue': IssueUpdate,
+  'kicad.availability': KicadAvailabilityParams,
+  'kicad.exportPcbModel': KicadPcbModelExportParams,
+  'kicad.listProjects': KicadWorktreeParams,
+  'kicad.readArtifact': KicadArtifactReadParams,
+  'kicad.renderPcbLayers': KicadPcbLayersRenderParams,
+  'kicad.renderSchematic': KicadSchematicRenderParams,
+  'kicad.resolveProject': KicadProjectParams,
   'linear.addIssueComment': IssueCommentOfLinearParams,
   'linear.agentIssueList': LinearIssueList,
   'linear.agentProjectList': LinearProjectList,

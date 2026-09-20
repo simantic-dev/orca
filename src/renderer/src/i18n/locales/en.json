@@ -731,6 +731,16 @@
               "bf4f2a8a72": "Could not start the emulator. Check iOS or Android emulator setup and try another device."
             }
           }
+        },
+        "kicad": {
+          "project": {
+            "tab": {
+              "2ab82df96b": "The workspace is no longer available.",
+              "958be9efa1": "The KiCad viewer is not available on remote workspaces yet.",
+              "f678bad152": "The workspace host is not known yet. Try again in a moment.",
+              "9cf9a86c64": "No KiCad project (.kicad_pro) was found in this workspace."
+            }
+          }
         }
       },
       "orchestration": {
@@ -1188,6 +1198,16 @@
             }
           }
         }
+      },
+      "settings": {
+        "navigation": {
+          "workflow": {
+            "sections": {
+              "d8703d1409": "Hardware",
+              "df745d405c": "KiCad project viewer and analog-cli simulation tooling."
+            }
+          }
+        }
       }
     },
     "components": {
@@ -1541,7 +1561,9 @@
         "0d0ace8861": "Star on GitHub",
         "ec43b38ba7": "Starred on GitHub",
         "157bb5ecbb": "Open GitHub",
-        "preflightDismiss": "Dismiss"
+        "preflightDismiss": "Dismiss",
+        "2deb0508d7": "Simantic logo",
+        "a46501664b": "Simantic"
       },
       "LinearIssueMarkdownDescriptionEditor": {
         "d9c47069ef": "Markdown",
@@ -3594,7 +3616,22 @@
                   "1baeb07c17": "ios simulator",
                   "8a580f88cf": "iphone",
                   "7ecdc5ef08": "ipad",
-                  "14965cc123": "mobile"
+                  "14965cc123": "mobile",
+                  "3d888e2645": "View KiCad Project...",
+                  "8c468ecbde": "kicad",
+                  "8a3c68c2b9": "pcb",
+                  "039f29bd37": "schematic",
+                  "1f03984d05": "board",
+                  "e56cd110ec": "kicad project"
+                }
+              }
+            },
+            "bar": {
+              "static": {
+                "create": {
+                  "menu": {
+                    "870cab5ef1": "View KiCad Project..."
+                  }
                 }
               }
             }
@@ -12012,6 +12049,60 @@
         "TerminalRenderingSection": {
           "6d4c55bacc": "Inline Images",
           "fffab5890b": "Display images directly in the terminal using SIXEL, iTerm2 (IIP), and Kitty graphics protocols."
+        },
+        "HardwareToolPathRow": {
+          "49bbb69ac3": "Checking",
+          "f5bd730e56": "Found {{value0}}",
+          "97f120b9fe": "Found",
+          "6324b55785": "Too old",
+          "1c23205504": "Not found",
+          "eab6363d9d": "Error",
+          "d4f2ec6a25": "Clear",
+          "e99c77267d": "Re-detect"
+        },
+        "HardwareToolsSettingsPane": {
+          "2977923a38": "configured path",
+          "c9081b7bd0": "environment variable",
+          "001f520f58": "on PATH",
+          "95cefbf5bb": "KiCad app bundle",
+          "45d34d85f6": "installed release",
+          "45bb754d81": "Hardware",
+          "e90ac8e86a": "KiCad project viewer and analog-cli simulation tooling.",
+          "5df4c7c5df": "analog-cli",
+          "0cac14dadf": "The simulator agents run to test boards. Leave empty to use $ANALOG_CLI, PATH, or the newest installed release.",
+          "ff8ceb1d0e": "Auto-detect",
+          "c0c80913ad": "kicad-cli",
+          "228eff2145": "Renders schematics and boards for the KiCad project viewer. Leave empty to use $SIMANTIC_KICAD_CLI, PATH, or the KiCad app bundle.",
+          "9502aa5c2a": "Run history",
+          "5f0d99f703": "Where analog-cli records every run on this machine.",
+          "bdc194d56f": "Reveal"
+        },
+        "hardware": {
+          "tools": {
+            "search": {
+              "f134268e72": "Hardware",
+              "19a6a224ca": "KiCad project viewer and analog-cli simulation tooling.",
+              "dd21d65e51": "hardware",
+              "e0d9dbbf63": "kicad",
+              "5a3d8d081f": "kicad-cli",
+              "e931ae7932": "analog-cli",
+              "23b5c94b2c": "pcb",
+              "fe231f16b7": "schematic",
+              "8b94998172": "simulation",
+              "c1790db674": "spice",
+              "38f280094f": "run history"
+            }
+          }
+        },
+        "settings": {
+          "hardware": {
+            "section": {
+              "renderer": {
+                "fc68d85404": "Hardware",
+                "9c7df2cd66": "KiCad project viewer and analog-cli simulation tooling."
+              }
+            }
+          }
         }
       },
       "right": {
@@ -13137,6 +13228,15 @@
                   }
                 }
               }
+            },
+            "right": {
+              "sidebar": {
+                "activity": {
+                  "items": {
+                    "bd46aa63dc": "Analog"
+                  }
+                }
+              }
             }
           },
           "fileExplorerOperationOwner": {
@@ -13528,6 +13628,70 @@
             "sourceMissing": "Transcript is no longer available",
             "metadataMatch": "Match in session metadata",
             "sourceActionsUnavailable": "The transcript source is unavailable."
+          },
+          "analog": {
+            "AnalogEmptyState": {
+              "1f54c58334": "Reading the run history…",
+              "a80fb4f0c8": "analog-cli was not found",
+              "d01747fee2": "No simulation runs yet",
+              "89e27a335a": "Analog runs are not available on remote workspaces yet",
+              "3a99d2ea63": "Waiting for the workspace host…",
+              "1221f3f5c3": "The run history could not be read",
+              "b69e30a1a5": "Runs already recorded still show here; set the binary in Settings › Hardware to re-run or forget them.",
+              "f47930c980": "Runs land here as agents call analog-cli from Orca terminals, e.g. analog-cli test -p <project> --format json -o report.json",
+              "5cf5a19a98": "Open Settings",
+              "60e323d4ff": "Refresh"
+            },
+            "AnalogPanel": {
+              "7903498578": "{{value0}} run(s) in the store could not be read.",
+              "b6f48903a9": "Forget this run?",
+              "cea0f27654": "analog-cli deletes the recorded manifest and datasets. Report files written next to the project are kept.",
+              "6ba8d28753": "Cancel",
+              "e6e94c7d64": "Forget"
+            },
+            "AnalogPanelHeader": {
+              "a17fceb321": "Analog",
+              "53bc9e855c": "Workspace",
+              "52ba2c4276": "All",
+              "f7e29c4f5d": "Refresh runs",
+              "5150ed376e": "More",
+              "408c87ac9f": "Reveal run history folder",
+              "c4e4a76498": "Hardware settings…"
+            },
+            "AnalogRunRow": {
+              "7238bc39cc": "running",
+              "ced266c532": "exit {{value0}}"
+            },
+            "AnalogRunRowActions": {
+              "f76f16c433": "Run actions",
+              "53845013c7": "Re-run in a new terminal",
+              "b94e14d708": "Copy command",
+              "d7c9a28148": "Reveal run folder",
+              "394f8257f2": "Forget run…"
+            },
+            "AnalogSessionGroupHeader": {
+              "f4fe32aab6": "working",
+              "1bf6fcc155": "blocked",
+              "3940335e89": "waiting",
+              "8c2791b47e": "idle",
+              "99236fd436": "Terminal",
+              "33fcd4ca8b": "Other terminals",
+              "5986e9a399": "Jump to terminal"
+            },
+            "analog": {
+              "run": {
+                "rerun": {
+                  "69b2cbaa1e": "Command copied"
+                }
+              },
+              "verdict": {
+                "cb1b08d68a": "passed {{value0}}/{{value1}}",
+                "48b8e8322f": "passed",
+                "479558cfd3": "failed {{value0}}/{{value1}}",
+                "3b50dc00f1": "failed",
+                "da0bfc4947": "exit {{value0}}"
+              }
+            }
           }
         }
       },
@@ -13670,7 +13834,8 @@
           "984338477a": "theme",
           "c47e1bd149": "agent",
           "windowsTerminalTitle": "Set Windows terminal defaults",
-          "windowsTerminalSubtitle": "Choose the DEFAULT Shell for new panes and how right-click behaves in the terminal."
+          "windowsTerminalSubtitle": "Choose the DEFAULT Shell for new panes and how right-click behaves in the terminal.",
+          "d21afd6c01": "Simantic"
         },
         "OnboardingFooter": {
           "ba58547306": "Back",
@@ -13970,7 +14135,8 @@
             "00a6903322": "Agents spawned",
             "c0e2e9dcd9": "Welcome back",
             "af761a0c0d": "Settings",
-            "5d94e8ddcc": "Orca"
+            "5d94e8ddcc": "Orca",
+            "5dffab53c1": "Simantic"
           },
           "TerminalSlide": {
             "0bb39f8fe6": "Send",
@@ -14849,7 +15015,8 @@
           "3c6e71df22": "Text diff is unavailable for this file in branch compare.",
           "d07e4b8553": "branch",
           "d16e037f40": "rich",
-          "6c4f1a8d2e": "Check details are unavailable."
+          "6c4f1a8d2e": "Check details are unavailable.",
+          "9738dc495f": "Run details are unavailable."
         },
         "EditorPanelHeader": {
           "fb8331694e": "Open Preview to the Side",
@@ -14891,7 +15058,8 @@
           "ac3bb87913": "Edit",
           "0d193dc03c": "Preview",
           "aff15f94f5": "Rich Editor",
-          "4d6ccb7ba6": "Source"
+          "4d6ccb7ba6": "Source",
+          "4bff4b13ea": "Viewer"
         },
         "ImageDiffViewer": {
           "a651be62b0": "Modified",
@@ -15408,6 +15576,137 @@
           "a0af0198aa": "Large diffs are not rendered by default.",
           "c3d9f4a712": "This diff's size isn't known yet, so it loads on request.",
           "f7fa7a40d0": "Load diff"
+        },
+        "analog": {
+          "run": {
+            "AnalogRunArtifactsSection": {
+              "e8dcebc2f1": "report",
+              "cf176b61fe": "dataset",
+              "3d7c9957f4": "This run wrote no files.",
+              "c226960176": "Reports next to the project can be overwritten by a later run; datasets live in the run history.",
+              "8ad8d59857": "Open"
+            },
+            "AnalogRunDatasetsSection": {
+              "01c82a7850": "This run produced no datasets.",
+              "5071428bde": "{{value0}} rows",
+              "d0d14b5f68": "Open CSV",
+              "e40a5cf3df": "Downsampled from {{value0}} rows; extremes are kept."
+            },
+            "AnalogRunSummarySection": {
+              "d6aae11e24": "pass",
+              "085181edf5": "fail",
+              "4ec291c0b5": "Measurement",
+              "80a48d03e0": "Signal",
+              "45df689469": "Measured",
+              "cbaf07068a": "Expected",
+              "4c6d2f7f14": "Margin",
+              "7fd088c19e": "Result",
+              "75da3f0e5c": "Test",
+              "d18a75805c": "Value",
+              "365506c870": "This run recorded no measurements."
+            },
+            "AnalogRunView": {
+              "1b723bb184": "Re-run",
+              "ba34bc4bae": "Copy command",
+              "9271487879": "Run folder",
+              "6f1c98d113": "Reload",
+              "ab33d1a677": "{{value0}} s",
+              "ed0380d881": "Summary",
+              "6759652b9d": "Datasets",
+              "b3f139b138": "Artifacts",
+              "ffdd13d429": "Report"
+            },
+            "AnalogSignalPicker": {
+              "7e88e57597": "Signals",
+              "0cb5868123": "Filter signals…",
+              "7cc42d1b7d": "Filter signals",
+              "740ba28e22": "Measured",
+              "cf110fc0a3": "Clear",
+              "6b0a003f4f": "At most {{value0}} signals plot at once."
+            },
+            "AnalogWaveformLanes": {
+              "38b4b652b9": "Pick signals to plot."
+            },
+            "analog": {
+              "artifact": {
+                "open": {
+                  "d0109c94c0": "This report cannot be previewed here.",
+                  "1f04864008": "Orca is not allowed to open this file."
+                }
+              }
+            }
+          }
+        },
+        "kicad": {
+          "KicadPcb3dView": {
+            "aea8569131": "Exporting the 3D model — large boards can take a minute.",
+            "305086a576": "Loading {{value0}} model…",
+            "93698b99fd": "The 3D view lost its graphics context.",
+            "a19ed18905": "Building the scene…",
+            "512926c0d4": "Top",
+            "90307d6cb4": "Bottom",
+            "4511a36600": "Reset view",
+            "114ff0dfa0": "Load full model",
+            "947731d830": "Drag to orbit · scroll to zoom · right-drag to pan"
+          },
+          "KicadPcbLayerView": {
+            "8ead480379": "Front",
+            "44944405c3": "Back",
+            "0f8deb3c07": "Layers",
+            "9c434432c0": "Layers to draw",
+            "d46e93b433": "Preset"
+          },
+          "KicadProjectPickerDialog": {
+            "a96e87c025": "View KiCad Project",
+            "dfb7666acb": "This workspace has several KiCad projects. Pick one to open.",
+            "c397b1fe8a": "Filter projects…",
+            "680289ac4f": "No matching project."
+          },
+          "KicadSchematicView": {
+            "17c70bb16e": "Sheet"
+          },
+          "KicadSvgPanSurface": {
+            "852f1cea3e": "Zoom out",
+            "96ff881a05": "Zoom in",
+            "7e512dbb22": "Fit to view"
+          },
+          "KicadViewerEmptyState": {
+            "1ab8e1da62": "Rendering with kicad-cli…",
+            "ba7a3be20c": "kicad-cli was not found",
+            "9ca1077f1f": "kicad-cli is too old",
+            "69a456c03b": "The KiCad viewer is not available on remote workspaces yet",
+            "c9e9ccfb7f": "This project has no board",
+            "a1f6b0fb91": "kicad-cli could not export this view",
+            "8df763bd20": "The export is too large to display",
+            "caa7875712": "This is not a complete KiCad project",
+            "889977382a": "The viewer hit an error",
+            "931b991460": "Install KiCad 8 or newer, or point Orca at kicad-cli in Settings › Hardware.",
+            "f03952ddb3": "Schematic and board exports need KiCad 8 or newer.",
+            "b2c1266f75": "Open the project in a local workspace to view it.",
+            "ce2fd02f38": "The schematic is still available; a .kicad_pcb next to the project enables the board views.",
+            "c85ae12469": "Show kicad-cli output",
+            "13a663122b": "Open Settings",
+            "3ed6629c43": "Load board only",
+            "778cb9120a": "Retry"
+          },
+          "KicadViewerToolbar": {
+            "f8710ff64a": "Schematic",
+            "10c18e4640": "PCB",
+            "45a2c886a6": "3D",
+            "c542d4629b": "Re-export from KiCad"
+          },
+          "use": {
+            "kicad": {
+              "project": {
+                "2f7b321787": "The workspace host is not known yet."
+              },
+              "svg": {
+                "artifact": {
+                  "c888d75e09": "kicad-cli produced an SVG the viewer could not read."
+                }
+              }
+            }
+          }
         }
       },
       "diff": {
@@ -17156,6 +17455,13 @@
           "insertColumnRight": "Insert column right",
           "deleteColumn": "Delete column",
           "deleteTable": "Delete table"
+        }
+      }
+    },
+    "app": {
+      "shell": {
+        "TitlebarLeftControls": {
+          "5a9f98bef1": "Simantic"
         }
       }
     }

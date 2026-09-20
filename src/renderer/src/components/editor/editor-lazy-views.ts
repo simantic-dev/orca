@@ -14,3 +14,9 @@ export const ImageDiffViewer = lazy(() => import('./ImageDiffViewer'))
 export const MermaidViewer = lazy(() => import('./MermaidViewer'))
 export const CsvViewer = lazy(() => import('./CsvViewer'))
 export const IpynbViewer = lazy(() => import('./IpynbViewer'))
+export const KicadProjectViewer = lazy(() => import('./kicad/KicadProjectViewer'), {
+  reloadKey: 'kicad-project-viewer'
+})
+export const AnalogRunView = lazy(() => import('./analog-run/AnalogRunView'), {
+  reloadKey: 'analog-run-view'
+})

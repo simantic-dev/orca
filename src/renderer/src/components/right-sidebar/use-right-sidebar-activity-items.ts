@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Plug, Files, GitBranch, ListChecks, Workflow } from 'lucide-react'
+import { AudioWaveform, Plug, Files, GitBranch, ListChecks, Workflow } from 'lucide-react'
 import { useAppStore } from '@/store'
 import { useRepoById } from '@/store/selectors'
 import { isFolderRepo } from '../../../../shared/repo-kind'
@@ -15,6 +15,7 @@ import {
 import { useShortcutLabel } from '@/hooks/useShortcutLabel'
 import { translate } from '@/i18n/i18n'
 import { AgentSessionHistoryIcon } from './agent-session-history-icon'
+import { useAnalogActivityIndicator } from '@/store/analog-runs'
 import type { ActivityBarItem } from './activity-bar-buttons'
 
 export type RightSidebarActivityItems = {
@@ -46,6 +47,7 @@ export function useRightSidebarActivityItems({
   const isFolder = isFolderWorkspace || (activeRepo ? isFolderRepo(activeRepo) : false)
   const isSshRepo = Boolean(activeRepo?.connectionId)
   const pluginSystemEnabled = useAppStore((s) => s.settings?.pluginSystemEnabled === true)
+  const analogIndicator = useAnalogActivityIndicator(activeWorktreeId)
   const pluginPanels = usePluginPanels()
   const visiblePluginPanels = useMemo(
     () => (pluginSystemEnabled ? pluginPanels : []),
@@ -72,6 +74,16 @@ export function useRightSidebarActivityItems({
         icon: AgentSessionHistoryIcon,
         title: translate('auto.components.right.sidebar.index.aiVaultSessionHistory', 'Agents'),
         shortcut: ''
+      },
+      {
+        id: 'analog',
+        icon: AudioWaveform,
+        title: translate(
+          'auto.components.right.sidebar.use.right.sidebar.activity.items.bd46aa63dc',
+          'Analog'
+        ),
+        shortcut: '',
+        ...(analogIndicator ? { statusIndicator: analogIndicator } : {})
       },
       {
         id: 'workspaces',
@@ -116,6 +128,7 @@ export function useRightSidebarActivityItems({
       ...getPluginPanelActivityItems(visiblePluginPanels, pluginPanelErrors)
     ],
     [
+      analogIndicator,
       checksShortcut,
       explorerShortcut,
       pluginPanelErrors,

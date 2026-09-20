@@ -128,3 +128,27 @@ describe('tab create menu options', () => {
     expect(findMatchingTabCreateMenuOptions(oversizedQuery, [option])).toEqual([])
   })
 })
+
+describe('tab create menu options: KiCad', () => {
+  it('offers the KiCad project entry only when the pane can open one', () => {
+    const base = {
+      terminalOnly: false,
+      hasNewBrowser: false,
+      hasNewMarkdown: false,
+      hasOpenMarkdown: false,
+      hasSimulator: false,
+      simulatorIsGoTo: false
+    }
+    expect(
+      buildTabCreateMenuOptions({ ...base, hasKicadProject: true }).map((option) => option.kind)
+    ).toContain('open-kicad-project')
+    expect(buildTabCreateMenuOptions(base).map((option) => option.kind)).not.toContain(
+      'open-kicad-project'
+    )
+    const match = findMatchingTabCreateMenuOptions(
+      'pcb',
+      buildTabCreateMenuOptions({ ...base, hasKicadProject: true })
+    )
+    expect(match.map((option) => option.kind)).toEqual(['open-kicad-project'])
+  })
+})

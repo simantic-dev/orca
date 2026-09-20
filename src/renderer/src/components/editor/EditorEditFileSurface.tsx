@@ -8,6 +8,7 @@ import {
   CsvViewer,
   ImageViewer,
   IpynbViewer,
+  KicadProjectViewer,
   MermaidViewer,
   MonacoEditor
 } from './editor-lazy-views'
@@ -39,6 +40,7 @@ export function EditorEditFileSurface({
   isMermaid,
   isCsv,
   isNotebook,
+  isKicadProject = false,
   mdViewMode,
   inlineMarkdownRenderState,
   isChangesMode,
@@ -70,6 +72,7 @@ export function EditorEditFileSurface({
   isMermaid: boolean
   isCsv: boolean
   isNotebook: boolean
+  isKicadProject?: boolean
   mdViewMode: MarkdownViewMode
   inlineMarkdownRenderState: MarkdownRenderState | null
   isChangesMode: boolean
@@ -229,6 +232,14 @@ export function EditorEditFileSurface({
     <MermaidViewer key={activeFile.id} content={currentContent} filePath={activeFile.filePath} />
   ) : isCsv && mdViewMode === 'rich' ? (
     <CsvViewer key={activeFile.id} content={currentContent} filePath={activeFile.filePath} />
+  ) : isKicadProject && mdViewMode === 'rich' ? (
+    <KicadProjectViewer
+      key={activeFile.id}
+      filePath={activeFile.filePath}
+      relativePath={activeFile.relativePath}
+      worktreeId={activeFile.worktreeId}
+      viewStateKey={`${editorViewStateKey}:kicad`}
+    />
   ) : isNotebook && mdViewMode === 'rich' ? (
     <IpynbViewer
       key={activeFile.id}

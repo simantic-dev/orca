@@ -2,6 +2,8 @@
 import { OrcaRuntimeWithFitOverrideListeners } from './orca-runtime-fit-override-listeners'
 import { RuntimeTerminalDriverController } from './runtime-terminal-driver-controller'
 import { RuntimeEdgeCommandController } from './runtime-edge-command-controller'
+import { getAppEnvironment } from '../../shared/app-environment'
+import { resolveLoginShellEnvironment } from '../startup/login-shell-environment'
 import { getBrowserHostLeaseRegistry } from './browser-host-lease-registry-instance'
 import { getRuntimeBrowserPageRegistry } from './runtime-browser-page-registry'
 import type {
@@ -75,6 +77,18 @@ export class OrcaRuntimeWithTerminalDrivers extends OrcaRuntimeWithFitOverrideLi
         this.resolveEmulatorCleanupWorkspaceId(selector),
       getAuthoritativeWindow: () => this.getAuthoritativeWindow(),
       getSettings: () => this.requireStore().getSettings()
+    },
+    kicadHost: {
+      getSettings: () => this.requireStore().getSettings(),
+      resolveRuntimeFileTarget: (selector) => this.resolveRuntimeFileTarget(selector),
+      getUserDataPath: () => getAppEnvironment().getPath('userData'),
+      getProcessEnv: () => resolveLoginShellEnvironment()
+    },
+    analogHost: {
+      getSettings: () => this.requireStore().getSettings(),
+      resolveRuntimeFileTarget: (selector) => this.resolveRuntimeFileTarget(selector),
+      getUserDataPath: () => getAppEnvironment().getPath('userData'),
+      getProcessEnv: () => resolveLoginShellEnvironment()
     }
   })
 

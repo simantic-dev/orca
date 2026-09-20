@@ -116,6 +116,8 @@ export function disposeClosedEditorTabCaches(
         break
       case 'check-details':
         break
+      case 'analog-run':
+        break
     }
   }
   deletePaneScopedCacheEntries(scrollTopCache, scrollTopOwners)

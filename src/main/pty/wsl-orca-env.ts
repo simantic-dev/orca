@@ -82,6 +82,9 @@ export function addOrcaWslInteropEnv(env: Record<string, string>): void {
     'ORCA_PANE_KEY/u',
     'ORCA_TAB_ID/u',
     'ORCA_WORKTREE_ID/u',
+    // Why: analog-cli reads these in the guest; the log lives on the Windows side, so /p translates it.
+    'ANALOG_CLI_SESSION/u',
+    'ANALOG_CLI_SESSION_LOG/p',
     'ORCA_AGENT_LAUNCH_TOKEN/u',
     `${SETUP_AGENT_SEQUENCE_STARTUP_COMMAND_ENV}/u`,
     `${SETUP_AGENT_SEQUENCE_STARTUP_SCRIPT_ENV}/u`,
